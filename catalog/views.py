@@ -92,7 +92,7 @@ def renew_book_librarian(request, pk):
     """
     View function for renewing a specific BookInstance by librarian
     """
-    book_inst=get_object_or_404(BookInstance, pk = pk)
+    book_inst = get_object_or_404(BookInstance, pk=pk)
 
     # If this is a POST request then process the Form data
     if request.method == 'POST':
@@ -107,14 +107,14 @@ def renew_book_librarian(request, pk):
             book_inst.save()
 
             # redirect to a new URL:
-            return HttpResponseRedirect(reverse('all-borrowed') )
+            return HttpResponseRedirect(reverse('all-borrowed'))
 
     # If this is a GET (or any other method) create the default form.
     else:
         proposed_renewal_date = datetime.date.today() + datetime.timedelta(weeks=3)
-        form = RenewBookForm(initial={'renewal_date': proposed_renewal_date,})
+        form = RenewBookForm(initial={'renewal_date': proposed_renewal_date, })
 
-    return render(request, 'catalog/book_renew_librarian.html', {'form': form, 'bookinst':book_inst})
+    return render(request, 'catalog/book_renew_librarian.html', {'form': form, 'bookinst': book_inst})
 
 
 class AuthorCreate(PermissionRequiredMixin, CreateView):
@@ -122,10 +122,12 @@ class AuthorCreate(PermissionRequiredMixin, CreateView):
     model = Author
     fields = '__all__'
 
+
 class AuthorUpdate(PermissionRequiredMixin, UpdateView):
     permission_required = 'catalog.can_mark_returned'
     model = Author
     fields = '__all__'
+
 
 class AuthorDelete(PermissionRequiredMixin, DeleteView):
     permission_required = 'catalog.can_mark_returned'
@@ -134,13 +136,13 @@ class AuthorDelete(PermissionRequiredMixin, DeleteView):
 
 
 class BookCreate(PermissionRequiredMixin, CreateView):
-    permission_required = 'catalog.can_remark_returned'
+    permission_required = 'catalog.can_mark_returned'
     model = Book
     fields = '__all__'
 
 
 class BookUpdate(PermissionRequiredMixin, UpdateView):
-    permission_required = 'catalog.can_remark_returned'
+    permission_required = 'catalog.can_mark_returned'
     model = Book
     fields = '__all__'
 
