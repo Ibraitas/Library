@@ -148,5 +148,5 @@ class BookUpdate(PermissionRequiredMixin, UpdateView):
 
 
 class BookDelete(PermissionRequiredMixin, DeleteView):
-    permission_required = 'catalog.can_remark_returned'
+    permission_required = 'catalog.can_mark_returned'
     model = Book
