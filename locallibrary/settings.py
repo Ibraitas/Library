@@ -27,7 +27,7 @@ SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'vf^sdz0*kd70p!*a&gvy%ls8bk8)9(
 # DEBUG = True
 DEBUG = bool(os.environ.get('DJANGO_DEBUG', True))
 
-ALLOWED_HOSTS = [still-mesa-66794.herokuapp.com]
+ALLOWED_HOSTS = []
 
 # Application definition
 
